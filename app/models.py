@@ -33,7 +33,7 @@ class Atividade(models.Model):
         Materia, on_delete=models.CASCADE
     )
     nome = models.CharField(max_length=50)
-    data_criacao = models.DateField(auto_now=True)
+    data_criacao = models.DateField(auto_now_add=True)
     tipo = models.CharField(max_length=30, choices=TIPOS)
 
     def __str__(self):
@@ -51,7 +51,7 @@ class Trabalho(models.Model):
         Materia, on_delete=models.CASCADE
     )
     nome = models.CharField(max_length=50)
-    data_criacao = models.DateField(auto_now=True)
+    data_criacao = models.DateField(auto_now_add=True)
     tipo = models.CharField(max_length=30, choices=TIPOS)
 
     def __str__(self):
