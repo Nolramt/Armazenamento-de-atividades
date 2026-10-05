@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matérias</title>
+</head>
+<body>
+    <header>
+        <nav>
+
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Materias</h1>
+            {% for materia in materias %}
+                <a href="{% url 'detalhes_materia' materia.ID_materia %}">
+                <h2>{{materia.nome}}</h2>
+                </a>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

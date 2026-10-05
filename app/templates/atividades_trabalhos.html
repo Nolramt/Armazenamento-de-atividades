@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividades e Trabalhos</title>
+</head>
+<body>
+    <header>
+        <nav>
+
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Atividades</h1>
+            {% for atividade in atividades %}
+                <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
+                    <h2>{{atividade.nome}}</h2>
+                </a>
+            {% endfor %}
+        </section>
+        <section>
+            <h1>Trabalhos</h1>
+            {% for trabalho in trabalhos %}
+                <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
+                    <h2>{{trabalho.nome}}</h2>
+                </a>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>

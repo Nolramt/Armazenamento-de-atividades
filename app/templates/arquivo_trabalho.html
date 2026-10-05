@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquivos</title>
+</head>
+<body>
+    <header>
+        <nav>
+
+        </nav>
+    </header>
+    <main>
+        <section>
+            <h1>Arquivos</h1>
+            {% for arquivo in arquivos %}
+            <article>
+                <label>{{arquivo.data_anexo}}</label>
+                <p>{{arquivo.nome}}</p>
+            </article>
+            {% endfor %}
+        </section>
+    </main>
+</body>
+</html>
