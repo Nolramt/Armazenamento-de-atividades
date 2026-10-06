@@ -1,6 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import requests
 from .models import Periodo, Materia, Atividade, Trabalho, Arquivo_atividade, Arquivo_trabalho
+from .forms import ArquivoAtividadeForm, ArquivoTrabalhoForm
+
 # Create your views here.
 
 def lista_periodos(request):
@@ -17,10 +19,34 @@ def detalhes_materia(request, id):
 
     return render(request, "atividades_trabalhos.html", {"atividades": atividades, "trabalhos": trabalhos})
 def detalhes_atividade(request, id):
-    arquivo = Arquivo_atividade.objects.filter(ID_atividade=id)
+    arquivos = Arquivo_atividade.objects.filter(ID_atividade=id)
 
-    return render(request, "arquivo_atividade.html", {"arquivos":arquivo})
+    if (request.method == "POST"):
+        form = ArquivoAtividadeForm(request.POST, request.FILES)
+
+        if form.is_valid():
+            arquivo = form.save(commit=False)
+            arquivo.ID_atividade_id = id
+            arquivo.save()
+
+            return redirect("detalhes_atividade", id=id)
+    else:
+        form = ArquivoAtividadeForm()
+
+    return render(request, "arquivo_atividade.html", {"arquivos":arquivos, "form":form})
 def detalhes_trabalho(request, id):
-    arquivo = Arquivo_trabalho.objects.filter(ID_trabalho=id)
+    arquivos = Arquivo_trabalho.objects.filter(ID_trabalho=id)
 
-    return render(request, "arquivo_trabalho.html", {"arquivos":arquivo})
+    if (request.method == "POST"):
+        form = ArquivoTrabalhoForm(request.POST, request.FILES)
+
+        if form.is_valid:
+            arquivo = form.save(commit=False)
+            arquivo.ID_trabalho_id = id
+            arquivo.save()
+
+            return redirect("detalhes_trabalho", id=id)
+    else:
+        form = ArquivoTrabalhoForm()
+
+    return render(request, "arquivo_trabalho.html", {"arquivos":arquivos, "form":form})
