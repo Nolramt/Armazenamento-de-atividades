@@ -13,13 +13,22 @@
     </header>
     <main>
         <section>
-            <h1>Arquivos</h1>
-            {% for arquivo in arquivos %}
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{form.as_p}}
+
+                <button type="submit">Enviar arquivo</button>
+            </form>
             <article>
-                <label>{{arquivo.data_anexo}}</label>
-                <p>{{arquivo.nome}}</p>
+                <h1>Arquivos</h1>
+                
+                {% for arquivo in arquivos %}
+                
+                    <label>{{arquivo.data_anexo}}</label>
+                    <p><a href="{{arquivo.arquivo.url}}">{{arquivo.nome}}</a></p>
+                
+                {% endfor %}
             </article>
-            {% endfor %}
         </section>
     </main>
 </body>
