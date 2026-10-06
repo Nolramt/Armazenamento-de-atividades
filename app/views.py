@@ -40,7 +40,7 @@ def detalhes_trabalho(request, id):
     if (request.method == "POST"):
         form = ArquivoTrabalhoForm(request.POST, request.FILES)
 
-        if form.is_valid:
+        if form.is_valid():
             arquivo = form.save(commit=False)
             arquivo.ID_trabalho_id = id
             arquivo.save()
