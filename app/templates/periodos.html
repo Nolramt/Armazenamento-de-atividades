@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Períodos</title>
 </head>
 <body>
     <header>
@@ -13,11 +13,22 @@
         <section>
             <h1>Meus periodos</h1>
             {% for periodo in periodos %}
+                <h3>Ano: {{periodo.ano}}</h3>
                 <a href="{% url 'lista_materias' periodo.ID_periodo %}">
                     <h2>{{periodo.nome}}</h2>
                 </a>
-                <h2>Ano: {{periodo.ano}}</h2>
             {% endfor %}
+        </section>
+        <section>
+            <form method="post">
+                <fieldset>
+                    <p><strong>Adicionar Período</strong></p>
+                    {% csrf_token %}
+                    {{form.as_p}}
+
+                    <button type="submit">Adicionar</button>
+                </fieldset>
+            </form>
         </section>
     </main>
 </body>
