@@ -9,26 +9,58 @@
     <hr>
     <header>
         <nav>
-            <a href="{% url 'lista_materias' id=id_materia %}">Matérias</a>
+            <a href="{% url 'lista_materias' id=id_periodo %}">Matérias</a>
         </nav>
     </header>
     <hr>
     <main>
         <section>
-            <h1>Atividades</h1>
-            {% for atividade in atividades %}
-                <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
-                    <h2>{{atividade.nome}}</h2>
-                </a>
-            {% endfor %}
+            <article>
+                <h1>Atividades</h1>
+                {% for atividade in atividades %}
+                    <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
+                        <h2>{{atividade.nome}}</h2>
+                    </a>
+                    <h3>Tipo: {{atividade.tipo}} </h3>
+                {% endfor %}
+            </article>
+            <article>
+                <form method="post">
+                    {% csrf_token %}        
+                    <input type="hidden" name="tipo_form" value="atividade">
+
+                    <fieldset>
+                        <p><strong>Adicionar atividade:</strong></p>
+                        {{atividade_form.as_p}}
+
+                        <button type="submit">Adicionar</button>
+                    </fieldset>
+                </form>
+            </article>
         </section>
         <section>
-            <h1>Trabalhos</h1>
-            {% for trabalho in trabalhos %}
-                <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
-                    <h2>{{trabalho.nome}}</h2>
-                </a>
-            {% endfor %}
+            <article>
+                <h1>Trabalhos</h1>
+                {% for trabalho in trabalhos %}
+                    <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
+                        <h2>{{trabalho.nome}}</h2>
+                    </a>
+                    <h3>{{trabalho.tipo}}</h3>
+                {% endfor %}
+            </article>
+            <article>
+                <form method="post">
+                    {% csrf_token %}
+                    <input type="hidden" name="tipo_form" value="trabalho">
+
+                    <fieldset>
+                        <p><strong>Adicionar trabalho:</strong></p>
+                        {{trabalho_form.as_p}}
+
+                        <button type="submit">Adicionar</button>
+                    </fieldset>
+                </form>
+            </article>
         </section>
     </main>
 </body>
