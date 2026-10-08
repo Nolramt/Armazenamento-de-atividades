@@ -9,18 +9,29 @@
     <hr>
     <header>
         <nav>
-            <a href="{% url 'lista_periodos' %}">Périodos</a>
+            <a href="{% url 'lista_periodos' %}">Períodos</a>
         </nav>
     </header>
     <hr>
     <main>
         <section>
-            <h1>Materias</h1>
+            <h1>Matérias</h1>
             {% for materia in materias %}
                 <a href="{% url 'detalhes_materia' materia.ID_materia %}">
                 <h2>{{materia.nome}}</h2>
                 </a>
             {% endfor %}
+        </section>
+        <section>
+            <form method="post">
+                <fieldset>
+                    <p><strong>Adicionar matéria:</strong></p>
+                    {% csrf_token %}
+                    {{form.as_p}}
+
+                    <button type="submit">Adicionar</button>
+                </fieldset>
+            </form>
         </section>
     </main>
 </body>
