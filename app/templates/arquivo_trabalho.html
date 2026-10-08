@@ -16,9 +16,10 @@
     <main>
         <section>
             <form method="post" enctype="multipart/form-data">
-                {% csrf_token %}
-                {{form.as_p}}
-
+                <fieldset>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                </fieldset>
                 <button type="submit">Enviar arquivo</button>
             </form>
             <article>
