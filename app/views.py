@@ -119,3 +119,35 @@ def detalhes_trabalho(request, id):
     return render(request, "arquivo_trabalho.html", {"arquivos":arquivos,
                                                      "form":form,
                                                      "id_materia":trabalho.ID_materia_id})
+
+
+def editar_item(request, tipo, id):
+    if (tipo == "periodo"):
+        periodo = Periodo.objects.get(ID_periodo=id)
+
+        if (request.method == "POST"):
+            form = PeriodoForm(request.POST ,instance=periodo)
+            if form.is_valid():
+                form.save()
+                return redirect("lista_periodos")
+        else:
+            form = PeriodoForm(instance=periodo)
+
+    elif (tipo == "materia"):
+        materia = Materia.objects.get(ID_materia=id)
+
+        if (request.method == "POST"):
+            form = MateriaForm(request.POST, instance=materia)
+            if form.is_valid():
+                form.save()
+                return redirect("lista_materias", id=materia.ID_periodo_id)
+        else:
+            form = MateriaForm(instance=materia)
+
+    elif (tipo == "atividade"):
+        atividade = Atividade.objects.get(ID_atividade=id)
+    elif (tipo == "trabalho"):
+        trabalho = Trabalho.objects.get(ID_trabalho=id)
+
+    
+    return render(request, "editar_item.html", {"form":form, "periodo":periodo})
