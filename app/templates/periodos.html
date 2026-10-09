@@ -17,6 +17,7 @@
                 <a href="{% url 'lista_materias' periodo.ID_periodo %}">
                     <h2>{{periodo.nome}}</h2>
                 </a>
+                <a href="{% url 'editar_item' 'periodo' periodo.ID_periodo %}">Editar</a>
             {% endfor %}
         </section>
         <section>
