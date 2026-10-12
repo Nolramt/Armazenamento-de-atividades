@@ -3,6 +3,8 @@ import requests
 from .models import Periodo, Materia, Atividade, Trabalho, Arquivo_atividade, Arquivo_trabalho
 from .forms import PeriodoForm, MateriaForm, AtividadeForm, TrabalhoForm, ArquivoAtividadeForm, ArquivoTrabalhoForm
 
+from django.http import Http404
+
 # Create your views here.
 
 def lista_periodos(request):
@@ -124,9 +126,10 @@ def detalhes_trabalho(request, id):
 def editar_item(request, tipo, id):
     if (tipo == "periodo"):
         periodo = Periodo.objects.get(ID_periodo=id)
+        objeto = periodo
 
         if (request.method == "POST"):
-            form = PeriodoForm(request.POST ,instance=periodo)
+            form = PeriodoForm(request.POST, instance=periodo)
             if form.is_valid():
                 form.save()
                 return redirect("lista_periodos")
@@ -135,6 +138,7 @@ def editar_item(request, tipo, id):
 
     elif (tipo == "materia"):
         materia = Materia.objects.get(ID_materia=id)
+        objeto = materia
 
         if (request.method == "POST"):
             form = MateriaForm(request.POST, instance=materia)
@@ -146,8 +150,28 @@ def editar_item(request, tipo, id):
 
     elif (tipo == "atividade"):
         atividade = Atividade.objects.get(ID_atividade=id)
+        objeto = atividade
+
+        if (request.method == "POST"):
+            form = AtividadeForm(request.POST, instance=atividade)
+            if form.is_valid():
+                form.save()
+                return redirect("detalhes_materia", id=objeto.ID_materia_id)
+        else:
+            form = AtividadeForm(instance=atividade)
+
     elif (tipo == "trabalho"):
         trabalho = Trabalho.objects.get(ID_trabalho=id)
+        objeto = trabalho
 
+        if(request.method == "POST"):
+            form = TrabalhoForm(request.POST, instance=trabalho)
+            if form.is_valid():
+                form.save()
+                return redirect("detalhes_materia", id=trabalho.ID_materia_id)
+        else:
+            form = TrabalhoForm(instance=trabalho)
+    else:
+        raise Http404("Tipo de registro não encontrado.")
     
-    return render(request, "editar_item.html", {"form":form, "periodo":periodo})
+    return render(request, "editar_item.html", {"form":form, "objeto":objeto})
