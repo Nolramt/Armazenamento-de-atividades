@@ -20,6 +20,7 @@
                 <a href="{% url 'detalhes_materia' materia.ID_materia %}">
                 <h2>{{materia.nome}}</h2>
                 </a>
+                <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
             {% endfor %}
         </section>
         <section>
