@@ -23,6 +23,7 @@
                     </a>
                     <h3>Tipo: {{atividade.tipo}} </h3>
                     <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
+                    <a href="{% url 'excluir_item' 'atividade' atividade.ID_atividade %}">Excluir</a>    
                 {% endfor %}
             </article>
             <article>
@@ -39,7 +40,9 @@
                 </form>
             </article>
         </section>
+
         <hr>
+
         <section>
             <article>
                 <h1>Trabalhos</h1>
@@ -49,6 +52,7 @@
                     </a>
                     <h3>{{trabalho.tipo}}</h3>
                     <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
+                    <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
                 {% endfor %}
             </article>
             <article>

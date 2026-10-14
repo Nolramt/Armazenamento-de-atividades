@@ -18,6 +18,7 @@
                     <h2>{{periodo.nome}}</h2>
                 </a>
                 <a href="{% url 'editar_item' 'periodo' periodo.ID_periodo %}">Editar</a>
+                <a href="{% url 'excluir_item' 'periodo' periodo.ID_periodo %}">Excluir</a>
             {% endfor %}
         </section>
         <section>

@@ -21,6 +21,7 @@
                 <h2>{{materia.nome}}</h2>
                 </a>
                 <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
+                <a href="{% url 'excluir_item' 'materia' materia.ID_materia %}">Excluir</a>
             {% endfor %}
         </section>
         <section>

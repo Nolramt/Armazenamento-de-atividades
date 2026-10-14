@@ -15,13 +15,6 @@
     <hr>
     <main>
         <section>
-            <form method="post" enctype="multipart/form-data">
-                <fieldset>
-                    {% csrf_token %}
-                    {{form.as_p}}
-                </fieldset>
-                <button type="submit">Enviar arquivo</button>
-            </form>
             <article>
                 <h1>Arquivos</h1>
                 
@@ -29,9 +22,18 @@
                 
                     <label>{{arquivo.data_anexo}}</label>
                     <p><a href="{{arquivo.arquivo.url}}">{{arquivo.nome}}</a></p>
-                
+                    <a href="{% url 'excluir_item' 'arquivo_trabalho' arquivo.ID_arquivo %}">Excluir</a>
                 {% endfor %}
             </article>
+        </section>
+        <section>
+            <form method="post" enctype="multipart/form-data">
+                <fieldset>
+                    {% csrf_token %}
+                    {{form.as_p}}
+                </fieldset>
+                <button type="submit">Enviar arquivo</button>
+            </form>
         </section>
     </main>
 </body>
