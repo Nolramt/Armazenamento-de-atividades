@@ -11,11 +11,11 @@
     </header>
     <main>
         <section>
-            <h1>Meus periodos</h1>
+            <h2>Meus periodos</h2>
             {% for periodo in periodos %}
                 <h3>Ano: {{periodo.ano}}</h3>
                 <a href="{% url 'lista_materias' periodo.ID_periodo %}">
-                    <h2>{{periodo.nome}}</h2>
+                    <h3>{{periodo.nome}}</h3>
                 </a>
                 <a href="{% url 'editar_item' 'periodo' periodo.ID_periodo %}">Editar</a>
                 <a href="{% url 'excluir_item' 'periodo' periodo.ID_periodo %}">Excluir</a>

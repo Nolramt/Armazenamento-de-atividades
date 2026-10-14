@@ -16,10 +16,10 @@
     <main>
         <section>
             <article>
-                <h1>Atividades</h1>
+                <h2>Atividades</h2>
                 {% for atividade in atividades %}
                     <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
-                        <h2>{{atividade.nome}}</h2>
+                        <h3>{{atividade.nome}}</h3>
                     </a>
                     <h3>Tipo: {{atividade.tipo}} </h3>
                     <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
@@ -45,12 +45,12 @@
 
         <section>
             <article>
-                <h1>Trabalhos</h1>
+                <h2>Trabalhos</h2>
                 {% for trabalho in trabalhos %}
                     <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
-                        <h2>{{trabalho.nome}}</h2>
+                        <h3>{{trabalho.nome}}</h3>
                     </a>
-                    <h3>{{trabalho.tipo}}</h3>
+                    <h4>{{trabalho.tipo}}</h4>
                     <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
                     <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
                 {% endfor %}

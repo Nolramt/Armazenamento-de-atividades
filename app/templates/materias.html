@@ -14,11 +14,12 @@
     </header>
     <hr>
     <main>
+        <h1>{{periodo.nome}}</h1>
         <section>
-            <h1>Matérias</h1>
+            <h2>Matérias</h2>
             {% for materia in materias %}
                 <a href="{% url 'detalhes_materia' materia.ID_materia %}">
-                <h2>{{materia.nome}}</h2>
+                <h3>{{materia.nome}}</h3>
                 </a>
                 <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
                 <a href="{% url 'excluir_item' 'materia' materia.ID_materia %}">Excluir</a>
