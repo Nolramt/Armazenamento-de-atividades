@@ -1,10 +1,12 @@
 from django.urls import path
-from .views import lista_periodos, lista_materias, detalhes_materia, detalhes_atividade, detalhes_trabalho, editar_item
+from .views import lista_periodos, lista_materias, detalhes_materia, detalhes_atividade, detalhes_trabalho, editar_item, excluir_item
 urlpatterns = [
     path("", lista_periodos, name="lista_periodos"),
     path("periodo/<int:id>/", lista_materias, name="lista_materias"),
     path("materia/<int:id>/", detalhes_materia, name="detalhes_materia"),
     path("atividade/<int:id>/", detalhes_atividade, name="detalhes_atividade"),
     path("trabalho/<int:id>/", detalhes_trabalho, name="detalhes_trabalho"),
-    path("editar/<str:tipo><int:id>/", editar_item, name="editar_item"),
+    path("editar/<str:tipo>/<int:id>/", editar_item, name="editar_item"),
+    path("excluir/<str:tipo>/<int:id>/", excluir_item, name="excluir_item"),
+
 ]
