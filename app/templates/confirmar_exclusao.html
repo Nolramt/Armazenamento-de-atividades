@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmar exclusão</title>
+</head>
+<body>
+    <main>
+        <h1>Confirmar exclusão</h1>
+        <p>Tem certeza que deseja excluir "<strong>{{ objeto.nome }}</strong>"?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit">Sim, excluir</button>
+        </form>
+        {% if tipo == "periodo" %}
+            <p>
+               <strong> 
+                Atenção: a exclusão deste período também removerá
+                suas matérias, atividades, trabalhos e registros
+                de arquivos relacionados.
+                </strong>
+            </p>
+        {% elif tipo == "materia" %}
+            <p>
+               <strong> 
+                Atenção: a exclusão desta matéria também removerá
+                suas atividades, trabalhos e registros
+                de arquivos relacionados.
+                </strong>
+            </p>
+        {% elif tipo == "atividade" %}
+            <p>
+               <strong> 
+                Atenção: a exclusão desta atividade também removerá
+                seus arquivos relacionados.
+                </strong>
+            </p>
+        {% elif tipo == "trabalho" %}
+            <p>
+               <strong> 
+                Atenção: a exclusão deste trabalho também removerá
+                seus arquivos relacionados.
+                </strong>
+            </p>
+        {% endif %}
+
+        <a href="{{voltar_url}}">Voltar</a>
+    </main>
+</body>
+</html>
