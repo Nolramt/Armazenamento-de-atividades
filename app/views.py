@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect, get_object_or_404
-import requests
 from .models import Periodo, Materia, Atividade, Trabalho, Arquivo_atividade, Arquivo_trabalho
 from .forms import PeriodoForm, MateriaForm, AtividadeForm, TrabalhoForm, ArquivoAtividadeForm, ArquivoTrabalhoForm
 
@@ -25,6 +24,7 @@ def lista_periodos(request):
 
 def lista_materias(request, id):
     materias = Materia.objects.filter(ID_periodo=id)
+    periodo = get_object_or_404(Periodo, ID_periodo=id)
 
     if (request.method == "POST"):
         form = MateriaForm(request.POST)
@@ -38,13 +38,16 @@ def lista_materias(request, id):
     else:
         form = MateriaForm()
 
-    return render(request, "materias.html", {"materias": materias, "form":form})
+    return render(request, "materias.html", {"materias": materias, 
+                                             "form":form,
+                                             "periodo":periodo})
 
 def detalhes_materia(request, id):
+    materia = get_object_or_404(Materia, ID_materia=id)
     atividades = Atividade.objects.filter(ID_materia=id)
     trabalhos = Trabalho.objects.filter(ID_materia=id)
 
-    materia = Materia.objects.get(ID_materia=id)
+    
 
     atividade_form = AtividadeForm()
     trabalho_form = TrabalhoForm()
@@ -82,9 +85,8 @@ def detalhes_materia(request, id):
                                                          "trabalho_form":trabalho_form})
 
 def detalhes_atividade(request, id):
-    arquivos = Arquivo_atividade.objects.filter(ID_atividade=id)
-    atividade = Atividade.objects.get(ID_atividade=id)
-
+    atividade = get_object_or_404(Atividade, ID_atividade=id)    
+    arquivos = Arquivo_atividade.objects.filter(ID_atividade=atividade)
 
     if (request.method == "POST"):
         form = ArquivoAtividadeForm(request.POST, request.FILES)
@@ -103,8 +105,8 @@ def detalhes_atividade(request, id):
                                                        "id_materia": atividade.ID_materia_id})
 
 def detalhes_trabalho(request, id):
-    arquivos = Arquivo_trabalho.objects.filter(ID_trabalho=id)
-    trabalho = Trabalho.objects.get(ID_trabalho=id)
+    trabalho = get_object_or_404(Trabalho, ID_trabalho=id)
+    arquivos = Arquivo_trabalho.objects.filter(ID_trabalho=trabalho)
 
     if (request.method == "POST"):
         form = ArquivoTrabalhoForm(request.POST, request.FILES)
@@ -126,7 +128,7 @@ def detalhes_trabalho(request, id):
 
 def editar_item(request, tipo, id):
     if (tipo == "periodo"):
-        periodo = Periodo.objects.get(ID_periodo=id)
+        periodo = get_object_or_404(Periodo, ID_periodo=id)
         objeto = periodo
 
         if (request.method == "POST"):
@@ -138,7 +140,7 @@ def editar_item(request, tipo, id):
             form = PeriodoForm(instance=periodo)
 
     elif (tipo == "materia"):
-        materia = Materia.objects.get(ID_materia=id)
+        materia = get_object_or_404(Materia, ID_materia=id)
         objeto = materia
 
         if (request.method == "POST"):
@@ -150,7 +152,7 @@ def editar_item(request, tipo, id):
             form = MateriaForm(instance=materia)
 
     elif (tipo == "atividade"):
-        atividade = Atividade.objects.get(ID_atividade=id)
+        atividade = get_object_or_404(Atividade, ID_atividade=id)
         objeto = atividade
 
         if (request.method == "POST"):
@@ -162,7 +164,7 @@ def editar_item(request, tipo, id):
             form = AtividadeForm(instance=atividade)
 
     elif (tipo == "trabalho"):
-        trabalho = Trabalho.objects.get(ID_trabalho=id)
+        trabalho = get_object_or_404(Trabalho, ID_trabalho=id)
         objeto = trabalho
 
         if(request.method == "POST"):
