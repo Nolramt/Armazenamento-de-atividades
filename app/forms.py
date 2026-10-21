@@ -21,10 +21,24 @@ class AtividadeForm(forms.ModelForm):
         model = Atividade
         fields = ["nome", "tipo"]
 
+    def clean_nome(self):
+        nome = self.cleaned_data["nome"]
+        if not nome.strip():
+            raise forms.ValidationError("O nome da atividade não pode ficar vazio.")
+
+        return nome
+
 class TrabalhoForm(forms.ModelForm):
     class Meta:
         model = Trabalho
         fields = ["nome", "tipo"]
+
+    def clean_nome(self):
+        nome = self.cleaned_data["nome"]
+        if not nome.strip():
+            raise forms.ValidationError("O nome do trabalho não pode ficar vazio.")
+
+        return nome
 
 class PeriodoForm(forms.ModelForm):
     class Meta:
