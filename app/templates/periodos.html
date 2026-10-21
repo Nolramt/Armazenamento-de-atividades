@@ -11,21 +11,32 @@
     </header>
     <main>
         <section>
-            <h2>Meus periodos</h2>
+            <h2 id="titulo-periodos">Meus períodos</h2>
             {% for periodo in periodos %}
-                <h3>Ano: {{periodo.ano}}</h3>
-                <a href="{% url 'lista_materias' periodo.ID_periodo %}">
-                    <h3>{{periodo.nome}}</h3>
-                </a>
-                <a href="{% url 'editar_item' 'periodo' periodo.ID_periodo %}">Editar</a>
-                <a href="{% url 'excluir_item' 'periodo' periodo.ID_periodo %}">Excluir</a>
+                <article>
+                    
+                    <h3>
+                        <a href="{% url 'lista_materias' periodo.ID_periodo %}">
+                            {{periodo.nome}}</a>
+                    </h3>
+                    <p>Ano: {{periodo.ano}}</p>
+                    <nav aria-label="Ações do período">
+                        <a href="{% url 'editar_item' 'periodo' periodo.ID_periodo %}">Editar</a>
+                        <a href="{% url 'excluir_item' 'periodo' periodo.ID_periodo %}">Excluir</a>
+                    </nav>
+                </article>
+            {% empty %}
+                <p>Nenhum período cadastrado ainda.</p>
             {% endfor %}
+
         </section>
-        <section>
+        <section aria-labelledby="titulo-adicionar">
             <form method="post">
+                {% csrf_token %}
+                
                 <fieldset>
-                    <p><strong>Adicionar Período</strong></p>
-                    {% csrf_token %}
+                    <legend id="titulo-adicionar">Adicionar período</legend>
+                    
                     {{form.as_p}}
 
                     <button type="submit">Adicionar</button>
@@ -33,5 +44,8 @@
             </form>
         </section>
     </main>
+    <footer>
+        <p>Armazenamento de Atividades</p>
+    </footer>
 </body>
 </html>
