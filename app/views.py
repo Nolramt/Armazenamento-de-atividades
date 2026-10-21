@@ -240,5 +240,8 @@ def excluir_item(request, tipo, id):
     return render(request, "confirmar_exclusao.html", {"objeto":objeto, 
                                                        "voltar_url":voltar_url,
                                                        "tipo":tipo})
+
+def erro_404(request, exception):
+    return render(request, "erro_404.html", status=404)
     
 
