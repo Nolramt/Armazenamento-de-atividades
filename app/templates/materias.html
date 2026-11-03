@@ -9,19 +9,19 @@
     <link rel="stylesheet" href="{% static 'app/css/estilo.css' %}">
 </head>
 <body>
-    <div class="header">
+    <div id="header">
         <header>
-            <div class="nav-header">
+            <div id="nav-header">
                 <nav>
                     <a href="{% url 'lista_periodos' %}">Períodos</a>
                 </nav>
             </div>
         </header>
     </div>
-    <div class="main">
+    <div id="main">
         <main>
             <h1>{{periodo.nome}}</h1>
-            <div class="section">
+            <div id="section-materia">
                 <section>
                     <h2>Matérias</h2>
                     {% for materia in materias %}
@@ -42,11 +42,11 @@
 
                     </div>
                     {% empty %}
-                        <p>Nenhuma matéria cadastrado.</p>
+                        <p>Nenhuma matéria cadastrada.</p>
                     {% endfor %}
                 </section>
             </div>
-            <div class="section">
+            <div id="section-form">
                 <section aria-labelledby="titulo-adicionar">
                     <div class="formulario">
                         <form method="post">

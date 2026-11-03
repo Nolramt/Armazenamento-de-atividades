@@ -23,23 +23,23 @@
         <main>
             <div id="section">
                 <section>
-                    <div id="article">
-                        <article>
-                            <h2>Arquivos</h2>
-                            {% for arquivo in arquivos %}
-                                <article>
-                                    <label>Data de anexo: {{arquivo.data_anexo}}</label>
-                                    <p><a href="{{arquivo.arquivo.url}}">{{arquivo.nome}}</a></p>
+                    <h2>Arquivos</h2>
+                    {% for arquivo in arquivos %}
+                        <div class="article">
+                            <article>
+                                <p>
+                                    <strong>Data de anexo:</strong> {{ arquivo.data_anexo }}
+                                </p>
+                                <p><a href="{{arquivo.arquivo.url}}">{{arquivo.nome}}</a></p>
 
-                                    <div class="nav-acoes">
-                                        <a href="{% url 'excluir_item' 'arquivo_atividade' arquivo.ID_arquivo %}">Excluir</a>
-                                    </div>
-                                </article>
-                            {% empty %}
-                                <p>Nenhum arquivo cadastrada.</p>
-                            {% endfor %}
-                        </article>
-                    </div>
+                                <div class="nav-acoes">
+                                    <a href="{% url 'excluir_item' 'arquivo_atividade' arquivo.ID_arquivo %}">Excluir</a>
+                                </div>
+                            </article>
+                        </div>
+                        {% empty %}
+                            <p>Nenhum arquivo cadastrado.</p>
+                        {% endfor %}
                 </section>
             </div>
             <div id="section-form">

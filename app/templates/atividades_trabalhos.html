@@ -22,10 +22,10 @@
         <main>
             <div id="section-atividade">
                 <section>
-                    <div id="article-atividade">
-                        <article>
-                            <h2>Atividades</h2>
-                            {% for atividade in atividades %}
+                    <h2>Atividades</h2>
+                    {% for atividade in atividades %}
+                        <div class="article-atividade">
+                            <article>
                                 <h3>    
                                     <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
                                         {{atividade.nome}}
@@ -36,39 +36,39 @@
                                     <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
                                     <a href="{% url 'excluir_item' 'atividade' atividade.ID_atividade %}">Excluir</a>    
                                 </div>
-                            {% empty %}
-                                <p>Nenhuma atividade cadastrada.</p>
-                            {% endfor %}
-                        </article>
-                    </div>
-                    <div id="article-atividade-form">
-                        <article>
-                            <div class="formulario">
-                                <form method="post">
-                                    {% csrf_token %}        
-                                    <input type="hidden" name="tipo_form" value="atividade">
+                             </article>
+                        </div>
+                        {% empty %}
+                            <p>Nenhuma atividade cadastrada.</p>
+                        {% endfor %}
+                </section>
+            </div>
+            <div id="section-atividade-form">
+                <section>
+                    <div class="formulario">
+                        <form method="post">
+                            {% csrf_token %}        
+                            <input type="hidden" name="tipo_form" value="atividade">
 
-                                    <fieldset>
-                                        <legend id="titulo-adicionar">Adicionar atividade</legend>
-                                        {{atividade_form.as_p}}
+                            <fieldset>
+                                <legend id="titulo-adicionar-atividade">Adicionar atividade</legend>
+                                {{atividade_form.as_p}}
 
-                                        <button type="submit">Adicionar</button>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </article>
+                                <button type="submit">Adicionar</button>
+                            </fieldset>
+                        </form>
                     </div>
                 </section>
             </div>
-
+            
             <hr>
 
             <div id="section-trabalho">
                 <section>
-                    <div id="article-trabalho">
-                        <article>
-                            <h2>Trabalhos</h2>
-                            {% for trabalho in trabalhos %}
+                    <h2>Trabalhos</h2>
+                    {% for trabalho in trabalhos %}
+                        <div class="article-trabalho">
+                            <article>
                                 <h3>
                                     <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
                                         {{trabalho.nome}}
@@ -79,30 +79,31 @@
                                     <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
                                     <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
                                 </div>
-                            {% empty %}
-                                <p>Nenhum trabalho cadastrada.</p>    
-                            {% endfor %}
-                        </article>
-                    </div>
-                    <div id="article-trabalho-form">
-                        <article>
-                            <div class="formulario">
-                                <form method="post">
-                                    {% csrf_token %}
-                                    <input type="hidden" name="tipo_form" value="trabalho">
+                            </article>
+                        </div>
+                    {% empty %}
+                        <p>Nenhum trabalho cadastrado.</p>    
+                    {% endfor %}
+                </section>
+            </div>
+            <div id="section-trabalho-form">
+                <section>
+                    <div class="formulario">
+                        <form method="post">
+                            {% csrf_token %}
+                            <input type="hidden" name="tipo_form" value="trabalho">
 
-                                    <fieldset>
-                                        <legend id="titulo-adicionar">Adicionar trabalho</legend>
-                                        {{trabalho_form.as_p}}
+                            <fieldset>
+                                <legend id="titulo-adicionar-trabalho">Adicionar trabalho</legend>
+                                {{trabalho_form.as_p}}
 
-                                        <button type="submit">Adicionar</button>
-                                    </fieldset>
-                                </form>
-                            </div>
-                        </article>
+                                <button type="submit">Adicionar</button>
+                            </fieldset>
+                        </form>
                     </div>
                 </section>
             </div>
+        
         </main>
     </div>
     <div class="footer">
