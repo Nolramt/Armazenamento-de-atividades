@@ -4,39 +4,65 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Arquivos</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilo.css' %}">
+
 </head>
 <body>
-    <hr>
-    <header>
-        <nav>
-            <a href="{% url 'detalhes_materia' id=id_materia %}">Voltar</a>
-        </nav>
-    </header>
-    <hr>
-    <main>
-        <section>
-            
-            <article>
-                <h2>Arquivos</h2>
-                {% for arquivo in arquivos %}
-                    <article>
-                        <label>Data de anexo: {{arquivo.data_anexo}}</label>
-                        <p><a href="{{arquivo.arquivo.url}}">{{arquivo.nome}}</a></p>
-                        <a href="{% url 'excluir_item' 'arquivo_atividade' arquivo.ID_arquivo %}">Excluir</a>
-                    </article>
-                {% endfor %}
-            </article>
-        </section>
-        <section>
-            <form method="post" enctype="multipart/form-data">
-                <fieldset>
-                    {% csrf_token %}
-                    {{ form.as_p }}
+    <div id="header">
+        <header>
+            <div id="nav-header">
+                <nav>
+                    <a href="{% url 'detalhes_materia' id=id_materia %}">Voltar</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <div id="main">
+        <main>
+            <div id="section">
+                <section>
+                    <div id="article">
+                        <article>
+                            <h2>Arquivos</h2>
+                            {% for arquivo in arquivos %}
+                                <article>
+                                    <label>Data de anexo: {{arquivo.data_anexo}}</label>
+                                    <p><a href="{{arquivo.arquivo.url}}">{{arquivo.nome}}</a></p>
 
-                    <button type="submit">Adicionar arquivo</button>
-                </fieldset>   
-            </form>
-        </section>
-    </main>
+                                    <div class="nav-acoes">
+                                        <a href="{% url 'excluir_item' 'arquivo_atividade' arquivo.ID_arquivo %}">Excluir</a>
+                                    </div>
+                                </article>
+                            {% empty %}
+                                <p>Nenhum arquivo cadastrada.</p>
+                            {% endfor %}
+                        </article>
+                    </div>
+                </section>
+            </div>
+            <div id="section-form">
+                <section>
+                    <div class="formulario">
+                        <form method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            <fieldset>
+                                <legend id="titulo-adicionar">Adicionar arquivo</legend>
+                                {{ form.as_p }}
+
+                                <button type="submit">Adicionar arquivo</button>
+                            </fieldset>   
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="footer">
+        <footer>
+            <p>Armazenamento de Atividades</p>
+        </footer>
+    </div>
 </body>
 </html>

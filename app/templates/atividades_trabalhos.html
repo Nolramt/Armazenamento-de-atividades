@@ -4,71 +4,111 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades e Trabalhos</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilo.css' %}">
 </head>
 <body>
-    <hr>
-    <header>
-        <nav>
-            <a href="{% url 'lista_materias' id=id_periodo %}">Matérias</a>
-        </nav>
-    </header>
-    <hr>
-    <main>
-        <section>
-            <article>
-                <h2>Atividades</h2>
-                {% for atividade in atividades %}
-                    <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
-                        <h3>{{atividade.nome}}</h3>
-                    </a>
-                    <h3>Tipo: {{atividade.tipo}} </h3>
-                    <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
-                    <a href="{% url 'excluir_item' 'atividade' atividade.ID_atividade %}">Excluir</a>    
-                {% endfor %}
-            </article>
-            <article>
-                <form method="post">
-                    {% csrf_token %}        
-                    <input type="hidden" name="tipo_form" value="atividade">
+    <div id="header">
+        <header>
+            <div id="nav-header">
+                <nav>
+                    <a href="{% url 'lista_materias' id=id_periodo %}">Matérias</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <div id="main">
+        <main>
+            <div id="section-atividade">
+                <section>
+                    <div id="article-atividade">
+                        <article>
+                            <h2>Atividades</h2>
+                            {% for atividade in atividades %}
+                                <h3>    
+                                    <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
+                                        {{atividade.nome}}
+                                    </a>
+                                </h3>
+                                <p><strong>Tipo:</strong> {{atividade.tipo}} </p>
+                                <div class="nav-acoes">
+                                    <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
+                                    <a href="{% url 'excluir_item' 'atividade' atividade.ID_atividade %}">Excluir</a>    
+                                </div>
+                            {% empty %}
+                                <p>Nenhuma atividade cadastrada.</p>
+                            {% endfor %}
+                        </article>
+                    </div>
+                    <div id="article-atividade-form">
+                        <article>
+                            <div class="formulario">
+                                <form method="post">
+                                    {% csrf_token %}        
+                                    <input type="hidden" name="tipo_form" value="atividade">
 
-                    <fieldset>
-                        <p><strong>Adicionar atividade:</strong></p>
-                        {{atividade_form.as_p}}
+                                    <fieldset>
+                                        <legend id="titulo-adicionar">Adicionar atividade</legend>
+                                        {{atividade_form.as_p}}
 
-                        <button type="submit">Adicionar</button>
-                    </fieldset>
-                </form>
-            </article>
-        </section>
+                                        <button type="submit">Adicionar</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
 
-        <hr>
+            <hr>
 
-        <section>
-            <article>
-                <h2>Trabalhos</h2>
-                {% for trabalho in trabalhos %}
-                    <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
-                        <h3>{{trabalho.nome}}</h3>
-                    </a>
-                    <h4>{{trabalho.tipo}}</h4>
-                    <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
-                    <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
-                {% endfor %}
-            </article>
-            <article>
-                <form method="post">
-                    {% csrf_token %}
-                    <input type="hidden" name="tipo_form" value="trabalho">
+            <div id="section-trabalho">
+                <section>
+                    <div id="article-trabalho">
+                        <article>
+                            <h2>Trabalhos</h2>
+                            {% for trabalho in trabalhos %}
+                                <h3>
+                                    <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
+                                        {{trabalho.nome}}
+                                    </a>
+                                </h3>
+                                <p><strong>Tipo:</strong> {{trabalho.tipo}}</p>
+                                <div class="nav-acoes">
+                                    <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
+                                    <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
+                                </div>
+                            {% empty %}
+                                <p>Nenhum trabalho cadastrada.</p>    
+                            {% endfor %}
+                        </article>
+                    </div>
+                    <div id="article-trabalho-form">
+                        <article>
+                            <div class="formulario">
+                                <form method="post">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="tipo_form" value="trabalho">
 
-                    <fieldset>
-                        <p><strong>Adicionar trabalho:</strong></p>
-                        {{trabalho_form.as_p}}
+                                    <fieldset>
+                                        <legend id="titulo-adicionar">Adicionar trabalho</legend>
+                                        {{trabalho_form.as_p}}
 
-                        <button type="submit">Adicionar</button>
-                    </fieldset>
-                </form>
-            </article>
-        </section>
-    </main>
+                                        <button type="submit">Adicionar</button>
+                                    </fieldset>
+                                </form>
+                            </div>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="footer">
+        <footer>
+            <p>Armazenamento de Atividades</p>
+        </footer>
+    </div>
 </body>
 </html>

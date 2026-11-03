@@ -4,38 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Matérias</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/estilo.css' %}">
 </head>
 <body>
-    <hr>
-    <header>
-        <nav>
-            <a href="{% url 'lista_periodos' %}">Períodos</a>
-        </nav>
-    </header>
-    <hr>
-    <main>
-        <h1>{{periodo.nome}}</h1>
-        <section>
-            <h2>Matérias</h2>
-            {% for materia in materias %}
-                <a href="{% url 'detalhes_materia' materia.ID_materia %}">
-                <h3>{{materia.nome}}</h3>
-                </a>
-                <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
-                <a href="{% url 'excluir_item' 'materia' materia.ID_materia %}">Excluir</a>
-            {% endfor %}
-        </section>
-        <section>
-            <form method="post">
-                <fieldset>
-                    <p><strong>Adicionar matéria:</strong></p>
-                    {% csrf_token %}
-                    {{form.as_p}}
+    <div class="header">
+        <header>
+            <div class="nav-header">
+                <nav>
+                    <a href="{% url 'lista_periodos' %}">Períodos</a>
+                </nav>
+            </div>
+        </header>
+    </div>
+    <div class="main">
+        <main>
+            <h1>{{periodo.nome}}</h1>
+            <div class="section">
+                <section>
+                    <h2>Matérias</h2>
+                    {% for materia in materias %}
+                    <div class="article">
+                        <article>
+                            <h3>
+                                <a href="{% url 'detalhes_materia' materia.ID_materia %}">
+                                    {{materia.nome}}
+                                </a>
+                            </h3>
 
-                    <button type="submit">Adicionar</button>
-                </fieldset>
-            </form>
-        </section>
-    </main>
+                            <div class="nav-acoes">
+                                <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
+                                <a href="{% url 'excluir_item' 'materia' materia.ID_materia %}">Excluir</a>
+                            </div>
+
+                        </article>
+
+                    </div>
+                    {% empty %}
+                        <p>Nenhuma matéria cadastrado.</p>
+                    {% endfor %}
+                </section>
+            </div>
+            <div class="section">
+                <section aria-labelledby="titulo-adicionar">
+                    <div class="formulario">
+                        <form method="post">
+                            {% csrf_token %}
+                            <fieldset>
+                                <legend id="titulo-adicionar">Adicionar matéria</legend>
+                                {{form.as_p}}
+
+                                <button type="submit">Adicionar</button>
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    <div class="footer">
+        <footer>
+            <p>Armazenamento de Atividades</p>
+        </footer>
+    </div>
 </body>
 </html>
