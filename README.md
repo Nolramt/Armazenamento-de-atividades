@@ -108,7 +108,7 @@ python manage.py migrate
 ### 6. Iniciar o servidor
 
 ```bash
-python manage.py runserver
+python manage.py runserver --insecure
 ```
 
 Após iniciar o servidor, acesse:
