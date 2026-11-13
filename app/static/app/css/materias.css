@@ -1,0 +1,160 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(244, 245, 247);
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+main {
+    flex-grow: 1;
+    display: flex;
+    gap: 10px;
+}
+main h1 {
+    width: 100%;
+    padding-top: 10px;
+    margin: 0 0 10px 0;
+    text-align: center;
+    
+}
+
+#header{
+
+    background-color:rgb(205, 204, 204);
+    padding: 10px;
+    border-bottom: 1px solid black;
+}
+
+#nav-header nav {
+    display: flex;
+    justify-content: flex-start;
+}
+
+#nav-header a {
+    text-decoration: none;
+    color: black;
+    background-color: rgb(249, 249, 249);
+    padding: 3px 15px;
+    border: 1px solid rgb(150, 150, 150);
+    border-radius: 4px;
+}
+
+#nav-header a:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+#section-materia {
+    flex: 3;
+    border-right: 1px solid black;
+    padding-right: 15px;
+    padding-left: 10px;
+    align-self: stretch;
+}
+#section-materia h2{
+    text-align: center;
+}
+#section-form{
+    flex: 1;
+    padding-left: 5px;
+    align-self: stretch;
+
+}
+#section-materia section {
+    display: flex;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    gap: 10px;
+}
+#section-materia section h2 {
+    width: 100%;
+}
+
+.article {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid black;
+    width: 180px;
+    box-sizing: border-box;
+}
+
+.nav-acoes {
+    display: flex;
+    gap: 10px;
+}
+
+.nav-acoes a {
+    text-decoration: none;
+    color: black;
+}
+
+.nav-acoes a:hover {
+    color: rgb(151, 151, 151);
+}
+
+.article h3 {
+    margin: 0 0 10px 0;
+}
+
+.article h3 a {
+    text-decoration: none;
+    color: black;
+}
+
+.article h3 a:hover {
+    color: rgb(151, 151, 151);
+}
+
+.formulario {
+    background-color: white;
+    padding: 10px;
+    margin:15px;
+    margin-left:2px;
+    border-radius: 8px;
+    text-align: center;
+    border: 1px solid black;
+}
+.formulario fieldset{
+    border: none;
+}
+.formulario legend {
+    text-align: center;
+}
+.formulario input {
+    border-radius: 8px;
+    padding: 5px;
+    width: 200px;
+    box-sizing: border-box;
+}
+.formulario button {
+    background-color: rgb(249, 249, 249);
+    border-radius: 3px;
+    display: block;
+    margin: 0 auto;
+    padding: 6px 15px;
+    cursor: pointer;
+}
+.formulario button:hover {
+    background-color: rgb(221, 221, 221);
+}
+.formulario p {
+    margin: 12px 0;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.footer {
+    background-color: rgb(205, 204, 204);
+    padding: 10px;
+    text-align: center;
+    border-top: 1px solid black;
+}
+
+.footer p {
+    margin: 0;
+}
