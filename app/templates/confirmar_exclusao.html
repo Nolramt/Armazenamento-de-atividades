@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Confirmar exclusão</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/confirmar_exclusao.css' %}">
 </head>
 <body>
     <main>
@@ -15,7 +18,7 @@
         </form>
         {% if tipo == "periodo" %}
             <p>
-               <strong> 
+               <strong class="aviso-exclusao"> 
                 Atenção: a exclusão deste período também removerá
                 suas matérias, atividades, trabalhos e registros
                 de arquivos relacionados.
@@ -23,7 +26,7 @@
             </p>
         {% elif tipo == "materia" %}
             <p>
-               <strong> 
+               <strong class="aviso-exclusao"> 
                 Atenção: a exclusão desta matéria também removerá
                 suas atividades, trabalhos e registros
                 de arquivos relacionados.
@@ -31,14 +34,14 @@
             </p>
         {% elif tipo == "atividade" %}
             <p>
-               <strong> 
+               <strong class="aviso-exclusao"> 
                 Atenção: a exclusão desta atividade também removerá
                 seus arquivos relacionados.
                 </strong>
             </p>
         {% elif tipo == "trabalho" %}
             <p>
-               <strong> 
+               <strong class="aviso-exclusao"> 
                 Atenção: a exclusão deste trabalho também removerá
                 seus arquivos relacionados.
                 </strong>

@@ -6,7 +6,7 @@
     <title>Matérias</title>
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'app/css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/materias.css' %}">
 </head>
 <body>
     <div id="header">
@@ -18,51 +18,52 @@
             </div>
         </header>
     </div>
-    <div id="main">
-        <main>
+    
+    <main>
+        
+        <div id="section-materia">
             <h1>{{periodo.nome}}</h1>
-            <div id="section-materia">
-                <section>
-                    <h2>Matérias</h2>
-                    {% for materia in materias %}
-                    <div class="article">
-                        <article>
-                            <h3>
-                                <a href="{% url 'detalhes_materia' materia.ID_materia %}">
-                                    {{materia.nome}}
-                                </a>
-                            </h3>
+            <section>
+                <h2>Matérias</h2>
+                {% for materia in materias %}
+                <div class="article">
+                    <article>
+                        <h3>
+                            <a href="{% url 'detalhes_materia' materia.ID_materia %}">
+                                {{materia.nome}}
+                            </a>
+                        </h3>
 
-                            <div class="nav-acoes">
-                                <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
-                                <a href="{% url 'excluir_item' 'materia' materia.ID_materia %}">Excluir</a>
-                            </div>
+                        <div class="nav-acoes">
+                            <a href="{% url 'editar_item' 'materia' materia.ID_materia %}">Editar</a>
+                            <a href="{% url 'excluir_item' 'materia' materia.ID_materia %}">Excluir</a>
+                        </div>
 
-                        </article>
+                    </article>
 
-                    </div>
-                    {% empty %}
-                        <p>Nenhuma matéria cadastrada.</p>
-                    {% endfor %}
-                </section>
-            </div>
-            <div id="section-form">
-                <section aria-labelledby="titulo-adicionar">
-                    <div class="formulario">
-                        <form method="post">
-                            {% csrf_token %}
-                            <fieldset>
-                                <legend id="titulo-adicionar">Adicionar matéria</legend>
-                                {{form.as_p}}
+                </div>
+                {% empty %}
+                    <p>Nenhuma matéria cadastrada.</p>
+                {% endfor %}
+            </section>
+        </div>
+        <div id="section-form">
+            <section aria-labelledby="titulo-adicionar">
+                <div class="formulario">
+                    <form method="post">
+                        {% csrf_token %}
+                        <fieldset>
+                            <legend id="titulo-adicionar">Adicionar matéria</legend>
+                            {{form.as_p}}
 
-                                <button type="submit">Adicionar</button>
-                            </fieldset>
-                        </form>
-                    </div>
-                </section>
-            </div>
-        </main>
-    </div>
+                            <button type="submit">Adicionar</button>
+                        </fieldset>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </main>
+
     <div class="footer">
         <footer>
             <p>Armazenamento de Atividades</p>

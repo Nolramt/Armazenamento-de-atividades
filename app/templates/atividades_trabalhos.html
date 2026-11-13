@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Atividades e Trabalhos</title>
 
     {% load static %}
-    <link rel="stylesheet" href="{% static 'app/css/estilo.css' %}">
+    <link rel="stylesheet" href="{% static 'app/css/atividades_trabalhos.css' %}">
 </head>
+
 <body>
     <div id="header">
         <header>
@@ -18,36 +20,46 @@
             </div>
         </header>
     </div>
-    <div id="main">
-        <main>
+
+    <main>
+        <div id="abas">
+            <button type="button" id="aba-atividade" class="aba ativa">
+                Atividades
+            </button>
+
+            <button type="button" id="aba-trabalho" class="aba">
+                Trabalhos
+            </button>
+        </div>
+        <div id="painel-atividade">
             <div id="section-atividade">
                 <section>
                     <h2>Atividades</h2>
                     {% for atividade in atividades %}
-                        <div class="article-atividade">
-                            <article>
-                                <h3>    
-                                    <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
-                                        {{atividade.nome}}
-                                    </a>
-                                </h3>
-                                <p><strong>Tipo:</strong> {{atividade.tipo}} </p>
-                                <div class="nav-acoes">
-                                    <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
-                                    <a href="{% url 'excluir_item' 'atividade' atividade.ID_atividade %}">Excluir</a>    
-                                </div>
-                             </article>
-                        </div>
-                        {% empty %}
-                            <p>Nenhuma atividade cadastrada.</p>
-                        {% endfor %}
+                    <div class="article-atividade">
+                        <article>
+                            <h3>
+                                <a href="{% url 'detalhes_atividade' atividade.ID_atividade %}">
+                                    {{atividade.nome}}
+                                </a>
+                            </h3>
+                            <p><strong>Tipo:</strong> {{atividade.tipo}} </p>
+                            <div class="nav-acoes">
+                                <a href="{% url 'editar_item' 'atividade' atividade.ID_atividade %}">Editar</a>
+                                <a href="{% url 'excluir_item' 'atividade' atividade.ID_atividade %}">Excluir</a>
+                            </div>
+                        </article>
+                    </div>
+                    {% empty %}
+                    <p>Nenhuma atividade cadastrada.</p>
+                    {% endfor %}
                 </section>
             </div>
             <div id="section-atividade-form">
                 <section>
                     <div class="formulario">
                         <form method="post">
-                            {% csrf_token %}        
+                            {% csrf_token %}
                             <input type="hidden" name="tipo_form" value="atividade">
 
                             <fieldset>
@@ -60,29 +72,30 @@
                     </div>
                 </section>
             </div>
-            
-            <hr>
+        </div>
 
+        
+        <div id="painel-trabalho" hidden>
             <div id="section-trabalho">
                 <section>
                     <h2>Trabalhos</h2>
                     {% for trabalho in trabalhos %}
-                        <div class="article-trabalho">
-                            <article>
-                                <h3>
-                                    <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
-                                        {{trabalho.nome}}
-                                    </a>
-                                </h3>
-                                <p><strong>Tipo:</strong> {{trabalho.tipo}}</p>
-                                <div class="nav-acoes">
-                                    <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
-                                    <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
-                                </div>
-                            </article>
-                        </div>
+                    <div class="article-trabalho">
+                        <article>
+                            <h3>
+                                <a href="{% url 'detalhes_trabalho' trabalho.ID_trabalho %}">
+                                    {{trabalho.nome}}
+                                </a>
+                            </h3>
+                            <p><strong>Tipo:</strong> {{trabalho.tipo}}</p>
+                            <div class="nav-acoes">
+                                <a href="{% url 'editar_item' 'trabalho' trabalho.ID_trabalho %}">Editar</a>
+                                <a href="{% url 'excluir_item' 'trabalho' trabalho.ID_trabalho %}">Excluir</a>
+                            </div>
+                        </article>
+                    </div>
                     {% empty %}
-                        <p>Nenhum trabalho cadastrado.</p>    
+                    <p>Nenhum trabalho cadastrado.</p>
                     {% endfor %}
                 </section>
             </div>
@@ -103,13 +116,17 @@
                     </div>
                 </section>
             </div>
-        
-        </main>
-    </div>
+        </div>
+
+    </main>
+
     <div class="footer">
         <footer>
             <p>Armazenamento de Atividades</p>
         </footer>
     </div>
+
+    <script src="{% static 'app/js/atividades_trabalhos.js' %}"></script>
 </body>
+
 </html>

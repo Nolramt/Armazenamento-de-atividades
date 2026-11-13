@@ -4,6 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página 404</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'app/css/erro_404.css' %}">
+
 </head>
 <body>
     <header>
@@ -12,6 +16,7 @@
         </nav>
     </header>
     <section>
+        <h1>404</h1>
         <h1>Página não encontrada</h1>
         <p>Não encontramos o conteúdo que você está procurando.</p>
     </section>
